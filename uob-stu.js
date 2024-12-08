@@ -8,7 +8,7 @@ fetch(url)
             const table = document.createElement('table');
             table.classList.add('table', 'table-bordered'); 
 
-            // Create the table header with column names
+            // creating tables 
             const thead = document.createElement('thead');
             thead.innerHTML = `
                 <tr>
@@ -21,4 +21,33 @@ fetch(url)
                 </tr>
             `;
             table.appendChild(thead);
-           
+            const tbody = document.createElement('tbody');
+
+            // Loop 
+            data.results.forEach(student => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${student.year ?? 'N/A'}</td>
+                    <td>${student.semester ?? 'N/A'}</td>
+                    <td>${student.the_programs ?? 'N/A'}</td>
+                    <td>${student.nationality ?? 'N/A'}</td>
+                    <td>${student.colleges ?? 'N/A'}</td>
+                    <td>${student.number_of_students ?? 'N/A'}</td>
+                `;
+                tbody.appendChild(row);
+            });
+            table.appendChild(tbody);
+            
+                        const dataContainer = document.getElementById('data-container');
+            dataContainer.appendChild(table);
+        } else {
+            
+                       alert("Something went wrong, Output (data) not found");
+        }
+    })
+    .catch(error => {
+             // Log the error 
+               console.error("Error fetching data:", error);
+        alert("An error occurred while fetching the data.");
+    });
+ 
