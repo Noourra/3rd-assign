@@ -24,6 +24,7 @@ fetch(url)
             const tbody = document.createElement('tbody');
 
             // Loop 
+
             data.results.forEach(student => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -34,6 +35,9 @@ fetch(url)
                     <td>${student.colleges ?? 'N/A'}</td>
                     <td>${student.number_of_students ?? 'N/A'}</td>
                 `;
+
+                // highlight rows that have number of students greater than 50
+                if (student.number_of_students>50) row.style.backgroundColor='#d4edda';
                 tbody.appendChild(row);
             });
             table.appendChild(tbody);
